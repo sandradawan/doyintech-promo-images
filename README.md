@@ -9,3 +9,6 @@ Ten original vector/SVG business advertising creatives are generated every day b
 The initial 10-piece pack for 2026-09-23 is in `daily/2026-09-23/`.
 
 Creative direction: premium technology/business aesthetic, blue/black/white/orange palette, strong typography, clean layouts, business-focused messaging, no fake testimonials or fabricated statistics.
+
+
+PNG rendering enabled for daily social-ready promo exports.
