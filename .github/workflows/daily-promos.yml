@@ -1,6 +1,9 @@
 name: Daily DoyinTech Promo Pack
 
 on:
+  push:
+    paths:
+      - ".github/workflows/daily-promos.yml"
   schedule:
     - cron: "10 15 * * *"
   workflow_dispatch:
@@ -47,6 +50,17 @@ SVG
           make_svg "09-solutions.svg" "ONE TECH PARTNER. MANY SOLUTIONS." "Websites, apps, CRM, ERP, databases and internal systems." "WEB • APPS • SYSTEMS • DATA"
           make_svg "10-cta.svg" "READY TO BUILD SOMETHING BETTER?" "Start your next digital project with DoyinTech." "VISIT DOYINTECH.VERCEL.APP"
           printf '%s\n' "# DoyinTech Daily Promo — $DATE" "Source: https://doyintech.vercel.app" "Homepage title observed: $TITLE" > "$DIR/SOURCE.txt"
+      - name: Render PNG social images
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          DATE="$(date -u +%Y-%m-%d)"
+          DIR="daily/$DATE"
+          for svg in "$DIR"/*.svg; do
+            magick -background none "$svg" "${svg%.svg}.png"
+          done
       - name: Commit daily pack
         run: |
           git config user.name "doyintech-promo-bot"
